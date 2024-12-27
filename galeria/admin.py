@@ -4,6 +4,6 @@ from galeria.models import Fotografia
 # Register your models here.
 
 class FotografiaAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["nome", "legenda", "descricao"]
 
 admin.site.register(Fotografia, FotografiaAdmin)
