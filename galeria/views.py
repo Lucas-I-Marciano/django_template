@@ -5,7 +5,7 @@ from galeria.models import Fotografia
 # Create your views here.
 
 def index(request):
-    fotografias = Fotografia.objects.all()
+    fotografias = Fotografia.objects.filter(publicado=True).all()
     return render(request, 'galeria/index.html', {"fotografias" : fotografias})
 
 def imagem(request, foto_id):
