@@ -5,5 +5,6 @@ from galeria.models import Fotografia
 
 class FotografiaAdmin(admin.ModelAdmin):
     list_display = ["nome", "legenda", "descricao"]
+    empty_value_display = "-???-"
 
 admin.site.register(Fotografia, FotografiaAdmin)
