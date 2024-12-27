@@ -46,7 +46,7 @@
         <div class="cards">
           <h2 class="cards__titulo">Navegue pela galeria</h2>
           <ul class="cards__lista">
-            {% for fotografia in fotografias %}
+            {% if fotografias %} {% for fotografia in fotografias %}
             <li class="card">
               <a href="{% url 'imagem' %}">
                 <img
@@ -69,7 +69,7 @@
                 </div>
               </div>
             </li>
-            {% endfor %}
+            {% endfor %} {% else %} {% endif %}
           </ul>
         </div>
       </section>
