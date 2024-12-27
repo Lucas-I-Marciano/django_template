@@ -8,5 +8,6 @@ class FotografiaAdmin(admin.ModelAdmin):
     empty_value_display = "-???-"
     list_display_links = ["id", "nome"]
     search_fields = ["nome"]
+    list_filter = ["categoria"]
 
 admin.site.register(Fotografia, FotografiaAdmin)
