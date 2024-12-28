@@ -52,7 +52,11 @@
               <a href="{% url 'imagem' foto_id=fotografia.id %}">
                 <img
                   class="card__imagem"
-                  src="{{fotografia.foto.url}}"
+                  {% if fotografia.foto == '' or fotografia.foto == null %}
+                    src="{% static 'assets/imagens/galeria/not_founded.jpg' %}"
+                  {% else %}
+                    src="{{fotografia.foto.url}}"
+                  {% endif %}
                   alt="foto"
                 />
               </a>
