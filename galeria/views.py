@@ -11,3 +11,6 @@ def index(request):
 def imagem(request, foto_id):
     fotografia = Fotografia.objects.get(id=foto_id)
     return render(request, 'galeria/imagem.html', {"fotografia": fotografia})
+
+def busca(request):
+    return render(request, "galeria/busca.html")
