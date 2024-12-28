@@ -132,6 +132,12 @@ STATICFILES_DIRS = [
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
 
+# MEDIA
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+MEDIA_URL = 'media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
