@@ -27,7 +27,11 @@
         <div class="imagem__conteudo">
           <img
             class="imagem__imagem"
-            src="{{fotografia.foto.url}}"
+            {% if fotografia.foto == '' or fotografia.foto == null %}
+              src="{% static 'assets/imagens/galeria/not_founded.jpg' %}"
+            {% else %}
+              src="{{fotografia.foto.url}}"
+            {% endif %}
           />
           <div class="imagem__info">
             <div class="imagem__texto">
