@@ -30,21 +30,7 @@
           src="{% static '/assets/logo/Logo(2).png' %}"
           alt="Logo da Alura Space"
         />
-        {% if messages %}
-        <ul class="messages">
-          {% for message in messages %}
-          <!-- <li {% if message.tags %} class="{{ message.tags }}"{% endif %}> -->
-          {% if message.tags == 'error' %}
-          <li>
-            <div class="alert alert-danger" role="alert">{{message}}</div>
-          </li>
-          {% else %}
-          <li>
-            <div class="alert alert-success" role="alert">{{message}}</div>
-          </li>
-          {% endif %} {% endfor %}
-        </ul>
-        {% endif %}
+        {% include 'usuarios/partials/_messages.html' %}
         <div class="cabecalho__busca">
           <div class="busca__fundo">
             <form action="{% url 'busca' %}">
