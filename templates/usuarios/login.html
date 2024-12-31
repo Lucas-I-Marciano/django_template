@@ -78,7 +78,7 @@
           </nav>
         </section>
         <section class="galeria" style="margin-left: 5em">
-          <form action="" method="">
+          <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             <!-- prettier-ignore -->
             <div class="row">
