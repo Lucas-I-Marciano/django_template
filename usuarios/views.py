@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 
 from usuarios.forms import LoginForm, CadastroForm
 
@@ -61,3 +61,8 @@ def cadastro(request):
 
             
     return render(request, 'usuarios/cadastro.html', {"form" : form})
+
+def user_logout(request):
+    logout(request)
+    messages.success(request, "Usuário deslogado com sucesso!")
+    return redirect("login")
