@@ -11,17 +11,16 @@ def login(request):
     return render(request, "usuarios/login.html", {"form" : form})
 
 def cadastro(request):
-    print("Executando a função cadastro")
     form = CadastroForm()
     # if this is a POST request we need to process the form data
     if request.method == "POST":
-        print("Método é post")
         # check whether it's valid:
         form = CadastroForm(request.POST)
         if form.is_valid():
             # process the data in form.cleaned_data as required
 
             if form['senha_1'].value() != form['senha_2'].value() :
+                messages.error(request, "As senhas são diferentes")
                 return redirect('cadastro') 
             
             nome = form['nome_login'].value()
@@ -29,6 +28,7 @@ def cadastro(request):
             senha = form['senha_1'].value()
 
             if User.objects.filter(username=nome).exists() :
+                messages.error(request, "Usuário já cadastrado")
                 return redirect('cadastro')
 
             user = User.objects.create_user(
@@ -37,7 +37,8 @@ def cadastro(request):
                 password=senha
             )
             user.save()
+            messages.success(request, "Usuário cadastrado com sucesso")
             return redirect("login")
 
             
-    return render(request, 'usuarios/cadastro.html', {"form" : form})
+    return render(request, 'usuarios/cadastro.html', {"form" : form, "message_class" : message_class})
