@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 from usuarios.forms import LoginForm, CadastroForm
 
@@ -8,6 +9,24 @@ from usuarios.forms import LoginForm, CadastroForm
 
 def login(request):
     form = LoginForm()
+
+    if request.method == "POST" :
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            nome = form['nome_login'].value()
+            senha = form['senha'].value()
+
+            user = authenticate(username=nome, password=senha)
+            if user is not None:
+                # A backend authenticated the credentials
+                messages.success(request, 'Usuário autenticado com Sucesso')
+                return redirect('index')
+            else:
+                # No backend authenticated the credentials
+                messages.error(request, 'Usuário ou senha incorretos')
+                return redirect('login')
+
     return render(request, "usuarios/login.html", {"form" : form})
 
 def cadastro(request):
