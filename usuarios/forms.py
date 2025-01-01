@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
@@ -93,6 +94,10 @@ class CadastroForm(forms.Form):
 
             if ' ' in nome_login :
                 raise ValidationError("Espaços não são permitidos nesse campo")
+            
+            if User.objects.filter(username=nome_login).exists() :
+                raise ValidationError("Usuário já cadastrado")
+
 
         return nome_login
         
