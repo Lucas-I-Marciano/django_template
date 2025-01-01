@@ -83,5 +83,17 @@ class CadastroForm(forms.Form):
             raise ValidationError("As senhas são diferentes")
 
         return senha_2
+
+        
+    def clean_nome_login(self):
+        nome_login = self.cleaned_data.get("nome_login")
+
+        if nome_login:
+            nome_login = nome_login.strip()
+
+            if ' ' in nome_login :
+                raise ValidationError("Espaços não são permitidos nesse campo")
+
+        return nome_login
         
     
