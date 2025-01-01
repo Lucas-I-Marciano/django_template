@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
@@ -73,4 +75,30 @@ class CadastroForm(forms.Form):
             }
         )
     )
+
+    def clean_senha_2(self):
+        senha_1 = self.cleaned_data.get('senha_1')
+        senha_2 = self.cleaned_data.get('senha_2')
+
+        if senha_1 != senha_2:
+            raise ValidationError("As senhas são diferentes")
+
+        return senha_2
+
+        
+    def clean_nome_login(self):
+        nome_login = self.cleaned_data.get("nome_login")
+
+        if nome_login:
+            nome_login = nome_login.strip()
+
+            if ' ' in nome_login :
+                raise ValidationError("Espaços não são permitidos nesse campo")
+            
+            if User.objects.filter(username=nome_login).exists() :
+                raise ValidationError("Usuário já cadastrado")
+
+
+        return nome_login
+        
     

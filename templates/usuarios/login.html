@@ -30,7 +30,7 @@
           src="{% static '/assets/logo/Logo(2).png' %}"
           alt="Logo da Alura Space"
         />
-        {% include 'usuarios/partials/_messages.html' %}
+        {% include 'partials/_messages.html' %}
         <div class="cabecalho__busca">
           <div class="busca__fundo">
             <form action="{% url 'busca' %}">
@@ -97,5 +97,5 @@
     </div>
   </body>
 
-  {% include 'galeria/partials/_footer.html' %}
+  {% include 'partials/_footer.html' %}
 </html>
