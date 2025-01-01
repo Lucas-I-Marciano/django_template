@@ -83,12 +83,17 @@
             {% csrf_token %}
             <!-- prettier-ignore -->
             <div class="row">
+              
               {% for field in form.visible_fields %}
                 <div class="col-12 col-lg-12" style="margin-bottom: 10px">
                   <label for="{{field.id_for_label}}" style="color: #d9d9d9; margin-bottom: 5px">{{field.label}}</label>
                   {{ field }}
+                  {% for error in field.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                  {% endfor %}
                 </div>  
               {% endfor %}
+                
               <button class="btn btn-success col-12" style="padding: top 5px" type="submit">Criar sua conta</button>
             </div>
           </form>
