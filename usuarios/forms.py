@@ -75,13 +75,13 @@ class CadastroForm(forms.Form):
         )
     )
 
-    def clean_senha_1(self):
+    def clean_senha_2(self):
         senha_1 = self.cleaned_data.get('senha_1')
         senha_2 = self.cleaned_data.get('senha_2')
 
         if senha_1 != senha_2:
             raise ValidationError("As senhas são diferentes")
 
-        return senha_1
+        return senha_2
         
     
