@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import datetime
 
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Fotografia(models.Model):
@@ -19,6 +21,12 @@ class Fotografia(models.Model):
     categoria = models.CharField(max_length=20, choices=CATEGORIAS, null=False, default='')
     publicado = models.BooleanField(default=False)
     data_fotografia = models.DateField(default=datetime.now)
+    usuario = models.ForeignKey(
+        User,
+        models.SET_NULL,
+        blank=False,
+        null=True
+    )
 
     def __str__(self):
         return f'Fotografia: [Nome: {self.nome}]'
