@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate, logout, login
 
 from usuarios.forms import LoginForm, CadastroForm
 
 # Create your views here.
 
-def login(request):
+def user_login(request):
     form = LoginForm()
 
     if request.method == "POST" :
@@ -17,15 +17,16 @@ def login(request):
             nome = form['nome_login'].value()
             senha = form['senha'].value()
 
-            user = authenticate(username=nome, password=senha)
+            user = authenticate(request, username=nome, password=senha)
             if user is not None:
                 # A backend authenticated the credentials
+                login(request, user)
                 messages.success(request, 'Usuário autenticado com Sucesso')
                 return redirect('index')
             else:
                 # No backend authenticated the credentials
                 messages.error(request, 'Usuário ou senha incorretos')
-                return redirect('login')
+                return redirect('user_login')
 
     return render(request, "usuarios/login.html", {"form" : form})
 
@@ -53,7 +54,7 @@ def cadastro(request):
             )
             user.save()
             messages.success(request, "Usuário cadastrado com sucesso")
-            return redirect("login")
+            return redirect("user_login")
 
             
     return render(request, 'usuarios/cadastro.html', {"form" : form})
@@ -61,4 +62,4 @@ def cadastro(request):
 def user_logout(request):
     logout(request)
     messages.success(request, "Usuário deslogado com sucesso!")
-    return redirect("login")
+    return redirect("user_login")
