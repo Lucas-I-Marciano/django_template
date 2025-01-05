@@ -1,0 +1,29 @@
+{% extends 'shared/base.html' %} {% load static %} {% block content %}
+<div class="pagina-inicial">
+  {% include 'partials/_header.html' %}
+  <main class="principal">
+    {% include 'partials/_lateralMenu.html' %}
+    <section class="galeria" style="margin-left: 5em">
+      <form action="{% url 'cadastro' %}" method="POST">
+        {% csrf_token %}
+        <!-- prettier-ignore -->
+        <div class="row">
+              
+              {% for field in form.visible_fields %}
+                <div class="col-12 col-lg-12" style="margin-bottom: 10px">
+                  <label for="{{field.id_for_label}}" style="color: #d9d9d9; margin-bottom: 5px">{{field.label}}</label>
+                  {{ field }}
+                  {% for error in field.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                  {% endfor %}
+                </div>  
+              {% endfor %}
+                
+              <button class="btn btn-success col-12" style="padding: top 5px" type="submit">Cadastrar Fotografia</button>
+            </div>
+      </form>
+    </section>
+  </main>
+</div>
+
+{% endblock %}
