@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib import messages
 
 from galeria.models import Fotografia
@@ -9,7 +8,7 @@ from galeria.models import Fotografia
 def index(request):
     if not request.user.is_authenticated :
         messages.error(request, "Acesso restrito! Login necessário")
-        return redirect('login')
+        return redirect('user_login')
     
     fotografias = Fotografia.objects.filter(publicado=True).order_by("-data_fotografia").all()
     return render(request, 'galeria/index.html', {"fotografias" : fotografias})
@@ -21,7 +20,7 @@ def imagem(request, foto_id):
 def busca(request):
     if not request.user.is_authenticated :
         messages.error(request, "Acesso restrito! Login necessário")
-        return redirect('login')
+        return redirect('user_login')
         
     fotografias = Fotografia.objects.filter(publicado=True).order_by("-data_fotografia").all()
 

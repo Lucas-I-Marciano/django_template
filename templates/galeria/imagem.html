@@ -6,9 +6,8 @@
     <section class="conteudo">
       <section class="imagem">
         <div class="imagem__conteudo">
-          <img class="imagem__imagem" {% if fotografia.foto == '' or
-          fotografia.foto == null %} src="{% static
-          'assets/imagens/galeria/not_founded.jpg' %}" {% else %}
+          <!-- prettier-ignore -->
+          <img class="imagem__imagem" {% if fotografia.foto == '' or fotografia.foto == null %} src="{% static 'assets/imagens/galeria/not_founded.jpg' %}" {% else %}
           src="{{fotografia.foto.url}}" {% endif %} />
           <div class="imagem__info">
             <div class="imagem__texto">
