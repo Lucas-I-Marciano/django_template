@@ -21,6 +21,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('galeria.urls')), # include([ROUTE], [VIEW])
-    path('', include('usuarios.urls'))
+    path('', include('apps.galeria.urls')), # include([ROUTE], [VIEW])
+    path('', include('apps.usuarios.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # https://docs.djangoproject.com/en/5.1/howto/static-files/#serving-files-uploaded-by-a-user-during-development
