@@ -1,13 +1,13 @@
 {% extends 'shared/base.html' %} {% load static %} {% block content %}
-    <div class="pagina-inicial">
-      {% include 'partials/_header.html' %}
-      <main class="principal">
-        {% include 'partials/_lateralMenu.html' %}
-        <section class="galeria" style="margin-left: 5em">
-          <form action="{% url 'cadastro' %}" method="POST">
-            {% csrf_token %}
-            <!-- prettier-ignore -->
-            <div class="row">
+<div class="pagina-inicial">
+  {% include 'partials/_header.html' %}
+  <main class="principal">
+    {% include 'partials/_lateralMenu.html' %}
+    <section class="galeria" style="margin-left: 5em">
+      <form action="{% url 'cadastro' %}" method="POST">
+        {% csrf_token %}
+        <!-- prettier-ignore -->
+        <div class="row">
               
               {% for field in form.visible_fields %}
                 <div class="col-12 col-lg-12" style="margin-bottom: 10px">
@@ -21,9 +21,9 @@
                 
               <button class="btn btn-success col-12" style="padding: top 5px" type="submit">Criar sua conta</button>
             </div>
-          </form>
-        </section>
-      </main>
-    </div>
+      </form>
+    </section>
+  </main>
+</div>
 
-    {% endblock %}
+{% endblock %}
