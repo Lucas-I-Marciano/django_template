@@ -65,3 +65,7 @@ def excluir_imagem(request, foto_id):
     fotografia.delete()
     messages.success(request, "Fotografia deletada com sucesso!")
     return redirect('index')
+
+def filtro_categoria(request, categoria):
+    fotografias = Fotografia.objects.filter(publicado=True).order_by("-data_fotografia").filter(categoria=categoria)
+    return render(request, 'galeria/index.html', {'fotografias':fotografias})
