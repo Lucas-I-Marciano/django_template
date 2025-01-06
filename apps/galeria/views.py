@@ -29,7 +29,7 @@ def busca(request):
     if request.GET['buscar'] :
         texto_buscar = request.GET['buscar']
         fotografias = fotografias.filter(nome__icontains=texto_buscar)
-    return render(request, "galeria/busca.html", {"fotografias" : fotografias})
+    return render(request, "galeria/index.html", {"fotografias" : fotografias})
 
 def adicionar_imagem(request):
     if not request.user.is_authenticated :
