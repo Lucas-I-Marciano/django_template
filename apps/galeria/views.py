@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 from apps.galeria.models import Fotografia
+from apps.galeria.forms import FotografiaForm
 
 # Create your views here.
 
@@ -29,3 +30,19 @@ def busca(request):
         texto_buscar = request.GET['buscar']
         fotografias = fotografias.filter(nome__icontains=texto_buscar)
     return render(request, "galeria/busca.html", {"fotografias" : fotografias})
+
+def adicionar_imagem(request):
+    if not request.user.is_authenticated :
+        messages.error(request, "Acesso restrito! Login necessário")
+        return redirect('user_login')
+    form = FotografiaForm()
+
+    if request.method == "POST":
+        form = FotografiaForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Fotografia Salva com Sucesso!")
+            return redirect('index')
+
+
+    return render(request, "galeria/adicionar_imagem.html", {"form" : form})
