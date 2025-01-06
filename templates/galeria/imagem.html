@@ -15,6 +15,14 @@
               <p class="imagem__descricao">{{fotografia.legenda}}</p>
               <p class="imagem__texto">{{fotografia.descricao}}</p>
             </div>
+            <div>
+              <a href="{% url 'editar_imagem' foto_id=fotografia.id %}"
+                ><button class="btn btn-success" style="margin-bottom: 2px">
+                  Editar
+                </button></a
+              >
+              <a href=""><button class="btn btn-danger">Excluir</button></a>
+            </div>
           </div>
         </div>
       </section>
