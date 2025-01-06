@@ -4,7 +4,11 @@
   <main class="principal">
     {% include 'partials/_lateralMenu.html' %}
     <section class="galeria" style="margin-left: 5em">
-      <form action="{% url 'cadastro' %}" method="POST">
+      <form
+        action="{% url 'adicionar_imagem' %}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         {% csrf_token %}
         <!-- prettier-ignore -->
         <div class="row">
