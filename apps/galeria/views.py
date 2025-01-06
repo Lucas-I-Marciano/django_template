@@ -32,5 +32,17 @@ def busca(request):
     return render(request, "galeria/busca.html", {"fotografias" : fotografias})
 
 def adicionar_imagem(request):
+    if not request.user.is_authenticated :
+        messages.error(request, "Acesso restrito! Login necessário")
+        return redirect('user_login')
     form = FotografiaForm()
+
+    if request.method == "POST":
+        form = FotografiaForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Fotografia Salva com Sucesso!")
+            return redirect('index')
+
+
     return render(request, "galeria/adicionar_imagem.html", {"form" : form})
