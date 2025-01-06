@@ -21,7 +21,9 @@
                   Editar
                 </button></a
               >
-              <a href=""><button class="btn btn-danger">Excluir</button></a>
+              <a href="{% url 'excluir_imagem' foto_id=fotografia.id %}"
+                ><button class="btn btn-danger">Excluir</button></a
+              >
             </div>
           </div>
         </div>
