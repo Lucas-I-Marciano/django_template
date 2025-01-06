@@ -46,3 +46,22 @@ def adicionar_imagem(request):
 
 
     return render(request, "galeria/adicionar_imagem.html", {"form" : form})
+
+def editar_imagem(request, foto_id):
+    fotografia = Fotografia.objects.get(id=foto_id)
+
+    form = FotografiaForm(instance=fotografia)
+    
+    if request.method == "POST":
+        form = FotografiaForm(request.POST, instance=fotografia)
+        form.save()
+        messages.success(request, "Fotografia editada com Sucesso!")
+        return redirect('index')
+
+    return render(request, 'galeria/editar_imagem.html', {"form" : form, 'foto_id':foto_id})
+
+def excluir_imagem(request, foto_id):
+    fotografia = Fotografia.objects.get(id=foto_id)
+    fotografia.delete()
+    messages.success(request, "Fotografia deletada com sucesso!")
+    return redirect('index')
