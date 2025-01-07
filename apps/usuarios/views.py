@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login
 
-from usuarios.forms import LoginForm, CadastroForm
+from apps.usuarios.forms import LoginForm, CadastroForm
 
 # Create your views here.
 
